@@ -13,8 +13,8 @@
 }
 
 #hero {
-  width: 400px;
-  height: 200px;
+  width: 300px;
+  height: 150px;
   background-image: url('./img/tesla.gif');
   background-size: cover;
   position: absolute;
@@ -25,22 +25,24 @@
 
 #hero #plasma {
   display: none;
-  height: 30px;
-  width: 80px;
-  background-color: #0cccff;
+  height: 50px;
+  width: 130px;
   position: absolute;
   border-radius: 20px;
   top: calc(100% / 2 - 15px);
-  left: 300px;
+  left: 250px;
+  /* background-image: url('./img/plasma.gif'); */
+  background-size: cover;
 }
 
 #spaceForRobots {
   display: flex;
+  margin-top: 20px;
 }
 
 .robot {
-  width: 150px;
-  height: 200px;
+  width: 120px;
+  height: 160px;
   background-image: url('./img/robot.gif');
   background-size: cover;
 }

@@ -4,22 +4,23 @@ const plasma = document.getElementById('plasma');
 
 class Hero {
   constructor() {
-    this.position = 300;
+    this.position = 250;
   }
 
-  createPlasma() {
-
-  }
+  // createPlasma() {
+  //   plasma.style.display = 'block';
+  //   setInterval(() => {
+  //     this.position += 30;
+  //     plasma.style.left = `${this.position < 1000 ? this.position : 0}px`;
+  //   }, 300)
+  // }
 
   render() {
-    plasma.style.display = 'block';
-    wrapper.onmousemove = (e) => heroNode.style.top = `${e.clientY}px`;
-    setInterval(() => {
-      this.position += 30;
-      plasma.style.left = `${this.position < 1000 ? this.position : 0}px`;
-    }, 300)
+    const HeightScreen = document.documentElement.clientHeight - 150;
+    wrapper.onmousemove = (e) => {
+      heroNode.style.top = `${e.clientY <= HeightScreen ? e.clientY : null}px`;
+    }
   }
 }
 
-const hero = new Hero();
-hero.render()
+const hero = new Hero().render();
