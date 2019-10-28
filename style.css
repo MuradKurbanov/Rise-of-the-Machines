@@ -23,15 +23,15 @@
   z-index: 2;
 }
 
-#hero #plasma {
-  display: none;
+#plasma {
   height: 50px;
   width: 130px;
   position: absolute;
+  left: 300px;
+  top: 0;
   border-radius: 20px;
-  top: calc(100% / 2 - 15px);
-  left: 250px;
-  /* background-image: url('./img/plasma.gif'); */
+  background-image: url('./img/plasma.gif');
+  /* background: blue; */
   background-size: cover;
 }
 

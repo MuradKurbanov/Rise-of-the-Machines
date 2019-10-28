@@ -1,26 +1,19 @@
 const heroNode = document.getElementById('hero');
 const wrapper = document.getElementById('wrapper');
-const plasma = document.getElementById('plasma');
 
 class Hero {
   constructor() {
-    this.position = 250;
+    this.heroY = 400;
+    this.render();
   }
-
-  // createPlasma() {
-  //   plasma.style.display = 'block';
-  //   setInterval(() => {
-  //     this.position += 30;
-  //     plasma.style.left = `${this.position < 1000 ? this.position : 0}px`;
-  //   }, 300)
-  // }
-
-  render() {
+  render = () => {
     const HeightScreen = document.documentElement.clientHeight - 150;
     wrapper.onmousemove = (e) => {
-      heroNode.style.top = `${e.clientY <= HeightScreen ? e.clientY : null}px`;
+      this.heroY = e.clientY;
+      heroNode.style.top = `${this.heroY <= HeightScreen ? this.heroY : null}px`;
     }
+    setInterval(() => new Plasma({ heroY: this.heroY }), 900)
   }
 }
 
-const hero = new Hero().render();
+const hero = new Hero();
