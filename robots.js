@@ -1,51 +1,31 @@
-const spaceForRobots = document.getElementById('spaceForRobots');
-const random = () => Math.round(Math.random() * 10);
+const random = (min, max) => Math.round(min + Math.random() * (max - min + 1));
+const isCheckForX = (cord1, cord2) => Number(cord1) >= Number(cord2) ? true : false;
+const isCheckForY = (cord1, cord2) =>  Number(cord1) -  Number(cord2) < 80 &&  Number(cord2) -  Number(cord1) < 80;
 
-const Robot = function(params) {
-  this.id = params.id;
-  this.position = 0;
-  this.render = function render() {
-
-    const showRobot = document.createElement('div');
-    showRobot.className = 'robot';
-    spaceForRobots.append(showRobot);
-
-    setInterval(() => {
-      this.position += 10;
-      // showRobot.style.transform = `scale(${random() > 8 ? 1 : -1}, 1)`;
-      showRobot.style.marginRight = `${this.position}px`;
-    }, 300 * random() || 300);
+class Robot {
+  constructor(params) {
+    this.robotX = 1100;
+    this.robotY = params.robotY;
+    this.render();
   }
-  this.render()
+  render = () => {
+    const robot = document.createElement('div');
+    robot.id = 'robot';
+    robot.style.left = `${this.robotX}px`;
+    robot.style.top = `${this.robotY}px`;
+    wrapper.append(robot);
+    const movementRobot = setInterval(() => {
+      Array.from(coordinates)
+        .forEach((item, i) => {
+          if (isCheckForX(item.getAttribute('x'), this.robotX) && isCheckForY(item.getAttribute('y'), this.robotY)) {
+            robot.remove();
+            clearInterval(movementRobot);
+          }
+        })
+      this.robotX -= 50;
+      robot.style.left = `${this.robotX}px`;
+    }, 300);
+  }
 }
 
-Array.from({ length: 3 }).map((item, i) => new Robot({id: i}));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//1
+setInterval(() => new Robot({ robotY: random(20, 650) }), 900);
