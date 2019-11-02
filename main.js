@@ -22,7 +22,7 @@ class Node {
       Array.from(coordinates).forEach((item, i, arr) => {
         let n1 = item.getBoundingClientRect()
         let n2 = node.getBoundingClientRect();
-        if (confirm(n1.y, n2.y) && confirm(n1.x, n2.x)) {
+        if (confirm(n1.y, n2.y) && confirm(n1.x, n2.x) && this.node.id !== 'rocket') {
           coordinates.delete(node);
           coordinates.delete(item);
           node.remove();
@@ -30,7 +30,7 @@ class Node {
           clearInterval(moveNode);
         }
       })
-      if (this.style === 'robot' && this.node.getBoundingClientRect().x > 55) node.style.left = '50px';
+      if (this.style === 'robot' || this.style === 'rocket' && this.node.getBoundingClientRect().x > 55) node.style.left = '50px';
       else if (this.style === 'plasma' && this.node.getBoundingClientRect().x < 1050) node.style.left = '1100px';
       else { node.remove(); coordinates.delete(node); clearInterval(moveNode); }
     }, 400);
@@ -45,12 +45,13 @@ const heroInAction = () => {
     coordY = e.clientY;
     heroNode.style.top = `${coordY <= HeightScreen ? coordY : null}px`;
   }
+
   // Create Plasma
   setInterval(() => new Node({
     coordX: 300,
     coordY: coordY + 55,
     style: 'plasma',
-  }),900);
+  }),1500);
 }
 heroInAction();
 
@@ -59,4 +60,11 @@ setInterval(() => new Node({
   coordX: 1150,
   coordY: random(20, 650),
   style: 'robot',
-}), 1600);
+}), 2000);
+
+// Create Rocket
+setInterval(() => new Node({
+  coordX: 1150,
+  coordY: random(20, 650),
+  style: 'rocket',
+}), 5000);

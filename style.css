@@ -42,5 +42,15 @@
   left: 1100px;
   top: 0;
   transition: left 5s cubic-bezier(0, 0, 1, 1);
-  border: 1px solid red;
+}
+
+#rocket {
+  width: 125px;
+  height: 20px;
+  background-image: url('./img/rocket.png');
+  background-size: cover;
+  position: absolute;
+  left: 1100px;
+  top: 0;
+  transition: left 3s cubic-bezier(0, 0, 1, 1);
 }
